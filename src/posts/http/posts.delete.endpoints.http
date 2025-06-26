@@ -1,0 +1,30 @@
+DELETE http://localhost:3000/posts
+?id=2
+
+
+//result were 
+// NOTE: THIS IS THE console.log AND NOT THE ACTUAL RESPONSE
+//[
+#   MetaOption {
+#     id: 2,
+#     metaValue: '{"sideBarEnabled": true, "footerActive": false}',
+#     createDate: 2025-06-07T20:32:04.462Z,
+#     updateDate: 2025-06-07T20:32:04.462Z,
+#     post: Post {
+#       id: 1,
+#       title: "What's new with NestJS",
+#       postType: 'post',
+#       slug: 'new-with-nestjs',
+#       status: 'draft',
+#       content: 'test content',
+#       schema: '{\r\n "@context": "https://schema.org",\r\n "@type": "Person"\r\n }',
+#       featuredImageUrl: 'http://localhost.com/images/image1.jpg',
+#       publishOn: 2024-03-16T07:46:32.000Z,
+        //!-- SO YOU SEE THE POST OBJECT HERE ALSO HAVE  meataOptions
+        // so the eager option might not be a good idea since it will return the post object with all the metaOptions 
+        // so there is a nested structure like this:
+        // so it really depends on how you want to structure your data
+#       metaOptions: [MetaOption]
+#     }
+#   }
+# ]"

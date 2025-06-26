@@ -1,0 +1,22 @@
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+
+
+{
+  "title": "What's with NestJS 7?",
+  "postType": "post",
+  "slug": "what-with-nestjs-7",
+  "status": "draft",
+  "content": "test content",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Person\" }",
+  "featuredImageUrl": "http://localhost.com/images/image1.jpg",
+  "publishOn": "2024-03-16T07:46:32+0000",
+  "metaOptions": {
+    "metaValue": "{ \"metaKey\": \"metaValue\" }"
+  },
+  "authorId": 1,
+  "tags": [
+  7
+  ]
+}

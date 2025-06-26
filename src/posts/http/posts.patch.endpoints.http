@@ -1,0 +1,15 @@
+PATCH http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "id": 8,
+  "title": "Updated Post Title of id 8",
+   "postType": "story",
+    "status": "published",
+  "content": "This is the updated content of the post.",
+  "metaOptions": {
+   "metaValue": "{\"sidebarEnabled\":true,\"sidebarPosition\":\"right\",\"sidebarWidth\":300}"
+  },
+  "tags": [14,15]
+
+}
