@@ -6,6 +6,9 @@ import { PostsModule } from './posts/posts.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsersModule } from './users/users.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import environmentValidation from './config/environment.validation';
+import appConfig from './config/app.config'
+import databaseConfig from './config/database.config';
 /**
  * Importing Entities
  * */
@@ -64,6 +67,13 @@ const ENV = process.env.NODE_ENV;
       // "start:dev": "cross-env NODE_ENV=development nest start --watch",
 
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
+      load: [appConfig, databaseConfig],
+
+      // this isthe validation schema for the environment variables
+      // it tell what are the required environment variables and 
+      // what they're supposed to be
+      validationSchema: environmentValidation,
+
     }),
 
     //
@@ -72,28 +82,26 @@ const ENV = process.env.NODE_ENV;
       inject: [ConfigService],
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
-        entities: [User],
+        // entities: [User],
         // instead of using the entities array, you can use the glob pattern
-        autoLoadEntities: true,
+        autoLoadEntities: config.get<boolean>('database.autoLoadEntities'),
         // These options are for development only
         // and should not be used in production
-        synchronize: true,
+        synchronize: config.get<boolean>('database.synchronize'),
 
         // ? instead of using the environment variables directly
         // * you can use the ConfigService to get the values
-
-
         // port: parseInt(process.env.DATABASE_PORT, 10),
         // username: process.env.DATABASE_USER,
         // password: process.env.DATABASE_PASSWORD,
         // host: process.env.DATABASE_HOST,
         // database: process.env.DATABASE_NAME,
 
-        port: config.get<number>('DATABASE_PORT'),
-        username: config.get<string>('DATABASE_USER'),
-        password: config.get<string>('DATABASE_PASSWORD'),
-        host: config.get<string>('DATABASE_HOST'),
-        database: config.get<string>('DATABASE_NAME'),
+        port: config.get<number>('database.port'),
+        username: config.get<string>('database.user'),
+        password: config.get<string>('database.password'),
+        host: config.get<string>('database.host'),
+        database: config.get<string>('database.name'),
       }),
     }),
     TagsModule,
