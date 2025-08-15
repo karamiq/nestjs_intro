@@ -4,3 +4,27 @@ Content-Type: application/json
 {
   "metaValue": "{\"sideBarEnabled\": true, \"footerActive\": false}"
 }
+
+###
+POST http://localhost:3000/meta-options
+Content-Type: application/json
+
+{
+  "metaValue": "{\"sideBarEnabled\": false, \"footerActive\": true}"
+}
+
+###
+POST http://localhost:3000/meta-options
+Content-Type: application/json
+
+{
+  "metaValue": "{\"sideBarEnabled\": true, \"footerActive\": true, \"theme\": \"dark\"}"
+}
+
+###
+POST http://localhost:3000/meta-options
+Content-Type: application/json
+
+{
+  "metaValue": "{\"sideBarEnabled\": false, \"footerActive\": false, \"theme\": \"light\"}"
+}

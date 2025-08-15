@@ -1,5 +1,6 @@
 import { AuthService } from './providers/auth.service';
-import { Controller } from '@nestjs/common';
+import { Body, Controller, Post } from '@nestjs/common';
+import { SignInDto } from './dtos/signin.dto';
 
 @Controller('auth')
 export class AuthController {
@@ -8,5 +9,15 @@ export class AuthController {
      * Injecting Auth Service
      */
     private readonly authService: AuthService,
-  ) {}
+  ) { }
+
+  @Post('/sign-in')
+  public async signIn(@Body() signInDto: SignInDto) {
+    return this.authService.signIn(signInDto);
+  }
+
+  @Post('/sign-up')
+  public async signUp() {
+
+  }
 }

@@ -6,3 +6,33 @@ Content-Type: application/json
   "slug": "nestjs",
   "description": "NestJs is a progressive Node.js framework for building efficient and scalable server-side applications."
 }
+
+###
+POST http://localhost:3000/tags/
+Content-Type: application/json
+
+{
+  "name": "TypeScript",
+  "slug": "typescript",
+  "description": "TypeScript is a strongly typed programming language that builds on JavaScript."
+}
+
+###
+POST http://localhost:3000/tags/
+Content-Type: application/json
+
+{
+  "name": "NodeJS",
+  "slug": "nodejs",
+  "description": "Node.js is a JavaScript runtime built on Chrome's V8 JavaScript engine."
+}
+
+###
+POST http://localhost:3000/tags/
+Content-Type: application/json
+
+{
+  "name": "Backend",
+  "slug": "backend",
+  "description": "Backend development involves server-side logic, databases, and APIs."
+}

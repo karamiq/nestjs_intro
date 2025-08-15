@@ -1,17 +1,23 @@
 import { GetUsersParamDto } from '../dtos/get-users-param.dto';
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Inject,
   Injectable,
   InternalServerErrorException,
   RequestTimeoutException,
 } from '@nestjs/common';
 import { User } from '../user.entity';
-import { Repository } from 'typeorm';
+import { DataSource, Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateUserDto } from '../dtos/create-user.dto';
 import { ConfigService, ConfigType } from '@nestjs/config';
 import profileConfig from '../config/profile.config';
+import { UsersCreateManyProvider } from './users-create-many.provider';
+import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
+import { CreateUserProvider } from './create-user.provider';
+import { CreateUserDto } from '../dtos/create-user.dto';
+import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
 /**
  * Controller class for '/users' API endpoint
  */
@@ -31,65 +37,66 @@ export class UsersService {
 
     @Inject(profileConfig.KEY)
     private readonly profileConfigureation: ConfigType<typeof profileConfig>,
+
+    /*
+     * Injecting UsersCreateManyProviderTs to create many users
+     */
+    private readonly usersCreateManyProvider: UsersCreateManyProvider,
+
+    // Injecting CreateUserProvider to create a new user
+    private readonly createUserProvider: CreateUserProvider,
+
+    // Injecting FindOneUserByEmailProvider to find a user by email
+    private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider,
   ) { }
 
+  /**
+   * Create a new user
+   */
   public async createUser(createUserDto: CreateUserDto) {
-    let existingUser = undefined;
-
-    try {
-      existingUser = await this.usersRepository.findOne({
-
-        where: { email: createUserDto.email },
-      });
-    } catch (error) {
-      Error.captureStackTrace(error);
-      throw new RequestTimeoutException(
-        'Unable to process request at this time, please try again later',
-        {
-          cause: error,
-          description: 'Database connection timeout',
-        }
-      );
-
-    }
-    if (existingUser) {
-      throw new BadRequestException(
-        `User with email ${createUserDto.email} already exists`,
-      );
-    }
-    /**
-     * Handle exceptions if user exists later
-     * */
-
-    // Try to create a new user
-    // - Handle Exceptions Later
-    let newUser = this.usersRepository.create(createUserDto);
-    newUser = await this.usersRepository.save(newUser);
-    console.log("User created successfully");
-
-    // Create the user
-    return newUser;
+    return this.createUserProvider.createUser(createUserDto);
   }
 
   /**
-   * Public method responsible for handling GET request for '/users' endpoint
+   * Get all users with pagination
    */
-  public findAll(
+  public async findAll(
     getUserParamDto: GetUsersParamDto,
-    limt: number,
+    limit: number,
     page: number,
   ) {
-    console.log(this.profileConfigureation);
-    let users = this.usersRepository.find();
-    return users
+    const skip = (page - 1) * limit;
+
+    const [users, total] = await this.usersRepository.findAndCount({
+      skip,
+      take: limit,
+    });
+
+    return {
+      users,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
   }
 
   /**
-   * Public method used to find one user using the ID of the user
+   * Find one user by ID
    */
-  public findOneById(id: number) {
-    return this.usersRepository.findOneBy({
-      id
-    });
+  public async findOneById(id: number) {
+    return this.usersRepository.findOneBy({ id });
+  }
+
+  /**
+   * Create multiple users in a transaction
+   */
+  public async createManyUsers(createUsersDto: CreateManyUsersDto) {
+    return this.usersCreateManyProvider.createManyUsers(createUsersDto);
+  }
+
+
+  public async findOneByEmail(email: string) {
+    return this.findOneUserByEmailProvider.findOneByEmail(email);
   }
 }

@@ -9,13 +9,26 @@ async function bootstrap() {
   /*
    * Use validation pipes globally
    */
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: true,
-      transform: true,
-    }),
-  );
+  new ValidationPipe({
+    whitelist: true,
+    forbidNonWhitelisted: true,
+    transform: true,
+
+    transformOptions: {
+
+      // in the DTO we have @Type(() => Number)
+      // This will allow the transformation of the data to the correct type
+      // This is useful when the data is not in the correct type
+      // For example, if the data is a string, it will be converted to a number
+      // If the data is a string, it will be converted to a number
+      enableImplicitConversion: true,
+    }
+
+  });
+
+  // Use global response interceptor
+  const { ResponseInterceptor } = await import('./common/response.interceptor');
+  app.useGlobalInterceptors(new ResponseInterceptor());
 
   /**
    * swagger configuration

@@ -13,20 +13,30 @@ import {
   ParseIntPipe,
   DefaultValuePipe,
   ValidationPipe,
+  UseGuards,
+  SetMetadata,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamDto } from './dtos/get-users-param.dto';
 import { PatchUserDto } from './dtos/patch-user.dto';
 import { UsersService } from './providers/users.service';
 import { ApiTags, ApiQuery, ApiOperation, ApiResponse } from '@nestjs/swagger';
+import { CreateManyUsersDto } from './dtos/create-many-users.dto';
+import { CreateUserProvider } from './providers/create-user.provider';
+import { Auth } from 'src/auth/decorator/auth.decorator';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
 
 @Controller('users')
 @ApiTags('Users')
+// the guard can be used to protect the entire controller
+// not just one endpoint
+// @UseGuards(AccessTokenGuard)
 export class UsersController {
   constructor(
     // Injecting Users Service
     private readonly usersService: UsersService,
-  ) {}
+    private readonly createUserProvider: CreateUserProvider,
+  ) { }
 
   @Get('/:id?')
   @ApiOperation({
@@ -51,6 +61,7 @@ export class UsersController {
       'The position of the page number that you want the API to return',
     example: 1,
   })
+
   public getUsers(
     @Param() getUserParamDto: GetUsersParamDto,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number,
@@ -60,8 +71,18 @@ export class UsersController {
   }
 
   @Post()
+  @SetMetadata('authType', 'none')
   public createUser(@Body() createUserDto: CreateUserDto) {
-    return this.usersService.createUser(createUserDto);
+    return this.createUserProvider.createUser(createUserDto);
+  }
+  // Since AccessTokenGuard is registered globally, we don't need @UseGuards here
+  // The global guard will automatically protect this route
+
+  // @SetMetadata('authType', 'None')
+  @Auth(AuthType.None)
+  @Post('/create-many')
+  public createManyUsers(@Body() createUsersDto: CreateManyUsersDto) {
+    return this.usersService.createManyUsers(createUsersDto);
   }
 
   @Patch()
@@ -69,3 +90,4 @@ export class UsersController {
     return patchUserDto;
   }
 }
+

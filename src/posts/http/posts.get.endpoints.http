@@ -1,1 +1,13 @@
-GET  http://localhost:3000/posts/
+{{
+ // pre request script
+  userId = 1234;
+  startDate = new Date('2025-01-01').toISOString();
+  endDate = new Date('2025-01-02').toISOString();
+  page = 2;
+  limit = 10;
+}}
+GET  http://localhost:3000/posts/{{userId}}
+?startDate={{startDate}}
+&endDate={{endDate}}
+&page={{page}}
+&limit={{limit}} 

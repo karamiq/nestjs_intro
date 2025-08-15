@@ -1,22 +1,512 @@
+# 30 Example POST requests for /posts
+
+###
 POST http://localhost:3000/posts
 Content-Type: application/json
 
+{
+  "title": "Understanding JavaScript Closures",
+  "postType": "post",
+  "slug": "understanding-javascript-closures",
+  "status": "published",
+  "content": "A deep dive into closures in JavaScript.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/js-closures.jpg",
+  "metaOptions": { "metaValue": "{ \"difficulty\": \"intermediate\" }" },
+  "authorId": 1,
+  "tags": [1, 2]
+}
 
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
 
 {
-  "title": "What's with NestJS 7?",
+  "title": "A Guide to TypeORM Relations",
   "postType": "post",
-  "slug": "what-with-nestjs-7",
+  "slug": "guide-to-typeorm-relations",
   "status": "draft",
-  "content": "test content",
-  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Person\" }",
-  "featuredImageUrl": "http://localhost.com/images/image1.jpg",
-  "publishOn": "2024-03-16T07:46:32+0000",
-  "metaOptions": {
-    "metaValue": "{ \"metaKey\": \"metaValue\" }"
-  },
+  "content": "Learn about OneToOne, OneToMany, and ManyToMany in TypeORM.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Guide\" }",
+  "featuredImageUrl": "http://localhost.com/images/typeorm-relations.jpg",
+
+  "metaOptions": { "metaValue": "{ \"section\": \"database\" }" },
+  "authorId": 2,
+  "tags": [2, 3]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Deploying NestJS to Production",
+  "postType": "page",
+  "slug": "deploying-nestjs-to-production",
+  "status": "review",
+  "content": "Best practices for deploying NestJS apps.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/nestjs-deploy.jpg",
+  "metaOptions": { "metaValue": "{ \"env\": \"production\" }" },
+  "authorId": 3,
+  "tags": [3, 4]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "What is Dependency Injection?",
+  "postType": "story",
+  "slug": "what-is-dependency-injection",
+  "status": "scheduled",
+  "content": "Explaining DI in modern frameworks.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"FAQPage\" }",
+  "featuredImageUrl": "http://localhost.com/images/di.jpg",
+  "metaOptions": { "metaValue": "{ \"topic\": \"architecture\" }" },
+  "authorId": 4,
+  "tags": [4, 5]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Series: Building a Blog with NestJS (Part 1)",
+  "postType": "series",
+  "slug": "building-blog-nestjs-part-1",
+  "status": "draft",
+  "content": "Getting started with NestJS for blogging.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Series\" }",
+  "featuredImageUrl": "http://localhost.com/images/blog-series-1.jpg",
+  "metaOptions": { "metaValue": "{ \"part\": 1 }" },
+  "authorId": 5,
+  "tags": [5, 6]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Series: Building a Blog with NestJS (Part 2)",
+  "postType": "series",
+  "slug": "building-blog-nestjs-part-2",
+  "status": "draft",
+  "content": "Continuing the blog series with authentication.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Series\" }",
+  "featuredImageUrl": "http://localhost.com/images/blog-series-2.jpg",
+  "metaOptions": { "metaValue": "{ \"part\": 2 }" },
+  "authorId": 5,
+  "tags": [6, 7]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Error Handling in NestJS",
+  "postType": "post",
+  "slug": "error-handling-in-nestjs",
+  "status": "published",
+  "content": "How to handle errors gracefully in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/nestjs-errors.jpg",
+  "metaOptions": { "metaValue": "{ \"level\": \"advanced\" }" },
+  "authorId": 6,
+  "tags": [7, 8]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Testing Strategies for APIs",
+  "postType": "post",
+  "slug": "testing-strategies-for-apis",
+  "status": "review",
+  "content": "Effective ways to test your API endpoints.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/api-testing.jpg",
+  "metaOptions": { "metaValue": "{ \"coverage\": \"full\" }" },
+  "authorId": 7,
+  "tags": [8, 9]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Using DTOs in NestJS",
+  "postType": "page",
+  "slug": "using-dtos-in-nestjs",
+  "status": "published",
+  "content": "Why and how to use DTOs in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Guide\" }",
+  "featuredImageUrl": "http://localhost.com/images/dtos.jpg",
+  "metaOptions": { "metaValue": "{ \"focus\": \"validation\" }" },
+  "authorId": 8,
+  "tags": [9, 10]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Middleware Explained",
+  "postType": "post",
+  "slug": "nestjs-middleware-explained",
+  "status": "draft",
+  "content": "Middleware in NestJS and how to use them.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/middleware.jpg",
+  "metaOptions": { "metaValue": "{ \"type\": \"middleware\" }" },
+  "authorId": 9,
+  "tags": [10, 1]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Authentication with JWT",
+  "postType": "post",
+  "slug": "authentication-with-jwt",
+  "status": "published",
+  "content": "Implementing JWT authentication in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/jwt-auth.jpg",
+  "metaOptions": { "metaValue": "{ \"security\": \"jwt\" }" },
+  "authorId": 10,
+  "tags": [1, 2]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Role-based Access Control",
+  "postType": "page",
+  "slug": "role-based-access-control",
+  "status": "scheduled",
+  "content": "How to implement RBAC in your app.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Guide\" }",
+  "featuredImageUrl": "http://localhost.com/images/rbac.jpg",
+  "metaOptions": { "metaValue": "{ \"roles\": [\"admin\", \"user\"] }" },
   "authorId": 1,
-  "tags": [
-  7
-  ]
+  "tags": [2, 3]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Scheduling Tasks in Node.js",
+  "postType": "story",
+  "slug": "scheduling-tasks-in-nodejs",
+  "status": "review",
+  "content": "Using cron and other schedulers in Node.js.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/scheduling.jpg",
+  "metaOptions": { "metaValue": "{ \"tool\": \"cron\" }" },
+  "authorId": 2,
+  "tags": [3, 4]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "API Versioning in NestJS",
+  "postType": "post",
+  "slug": "api-versioning-in-nestjs",
+  "status": "published",
+  "content": "How to version your APIs in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/versioning.jpg",
+  "metaOptions": { "metaValue": "{ \"version\": \"v1\" }" },
+  "authorId": 3,
+  "tags": [4, 5]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "GraphQL with NestJS",
+  "postType": "post",
+  "slug": "graphql-with-nestjs",
+  "status": "draft",
+  "content": "Integrating GraphQL in your NestJS app.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/graphql.jpg",
+  "metaOptions": { "metaValue": "{ \"api\": \"graphql\" }" },
+  "authorId": 4,
+  "tags": [5, 6]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Using Guards in NestJS",
+  "postType": "page",
+  "slug": "using-guards-in-nestjs",
+  "status": "published",
+  "content": "Protecting routes with guards.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Guide\" }",
+  "featuredImageUrl": "http://localhost.com/images/guards.jpg",
+  "metaOptions": { "metaValue": "{ \"guard\": \"auth\" }" },
+  "authorId": 5,
+  "tags": [6, 7]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Pipes for Validation",
+  "postType": "post",
+  "slug": "nestjs-pipes-for-validation",
+  "status": "review",
+  "content": "How to use pipes for validation in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
+  "featuredImageUrl": "http://localhost.com/images/pipes.jpg",
+  "metaOptions": { "metaValue": "{ \"pipe\": \"validation\" }" },
+  "authorId": 6,
+  "tags": [7, 8]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "Serialization in NestJS",
+  "postType": "post",
+  "slug": "serialization-in-nestjs",
+  "status": "published",
+  "content": "How to serialize responses in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/serialization.jpg",
+  "metaOptions": { "metaValue": "{ \"serialization\": true }" },
+  "authorId": 7,
+  "tags": [8, 9]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Interceptors",
+  "postType": "story",
+  "slug": "nestjs-interceptors",
+  "status": "scheduled",
+  "content": "Using interceptors for logging and transformation.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/interceptors.jpg",
+  "metaOptions": { "metaValue": "{ \"interceptor\": \"logging\" }" },
+  "authorId": 8,
+  "tags": [9, 10]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Custom Decorators",
+  "postType": "post",
+  "slug": "nestjs-custom-decorators",
+  "status": "draft",
+  "content": "How to create custom decorators in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/decorators.jpg",
+  "metaOptions": { "metaValue": "{ \"decorator\": \"custom\" }" },
+  "authorId": 9,
+  "tags": [10, 1]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Exception Filters",
+  "postType": "post",
+  "slug": "nestjs-exception-filters",
+  "status": "published",
+  "content": "Catching and handling exceptions in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/exception-filters.jpg",
+  "metaOptions": { "metaValue": "{ \"filter\": \"exception\" }" },
+  "authorId": 10,
+  "tags": [1, 2]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Logging Best Practices",
+  "postType": "page",
+  "slug": "nestjs-logging-best-practices",
+  "status": "review",
+  "content": "How to log effectively in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Guide\" }",
+  "featuredImageUrl": "http://localhost.com/images/logging.jpg",
+  "metaOptions": { "metaValue": "{ \"logging\": \"best\" }" },
+  "authorId": 1,
+  "tags": [2, 3]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Swagger Integration",
+  "postType": "post",
+  "slug": "nestjs-swagger-integration",
+  "status": "published",
+  "content": "Documenting APIs with Swagger in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/swagger.jpg",
+  "metaOptions": { "metaValue": "{ \"swagger\": true }" },
+  "authorId": 2,
+  "tags": [3, 4]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS and WebSockets",
+  "postType": "post",
+  "slug": "nestjs-and-websockets",
+  "status": "draft",
+  "content": "Real-time communication with WebSockets in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/websockets.jpg",
+  "metaOptions": { "metaValue": "{ \"websocket\": true }" },
+  "authorId": 3,
+  "tags": [4, 5]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS Caching Techniques",
+  "postType": "post",
+  "slug": "nestjs-caching-techniques",
+  "status": "published",
+  "content": "How to cache data in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/caching.jpg",
+  "metaOptions": { "metaValue": "{ \"cache\": true }" },
+  "authorId": 4,
+  "tags": [5, 6]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS File Uploads",
+  "postType": "page",
+  "slug": "nestjs-file-uploads",
+  "status": "scheduled",
+  "content": "Uploading files in NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/uploads.jpg",
+  "metaOptions": { "metaValue": "{ \"upload\": true }" },
+  "authorId": 5,
+  "tags": [6, 7]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS with MongoDB",
+  "postType": "post",
+  "slug": "nestjs-with-mongodb",
+  "status": "review",
+  "content": "Using MongoDB with NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/mongodb.jpg",
+  "metaOptions": { "metaValue": "{ \"database\": \"mongodb\" }" },
+  "authorId": 6,
+  "tags": [7, 8]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS with PostgreSQL",
+  "postType": "post",
+  "slug": "nestjs-with-postgresql",
+  "status": "published",
+  "content": "Using PostgreSQL with NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/postgresql.jpg",
+  "metaOptions": { "metaValue": "{ \"database\": \"postgresql\" }" },
+  "authorId": 7,
+  "tags": [8, 9]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS with MySQL",
+  "postType": "story",
+  "slug": "nestjs-with-mysql",
+  "status": "draft",
+  "content": "Using MySQL with NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/mysql.jpg",
+  "metaOptions": { "metaValue": "{ \"database\": \"mysql\" }" },
+  "authorId": 8,
+  "tags": [9, 10]
+}
+
+###
+POST http://localhost:3000/posts
+Content-Type: application/json
+
+{
+  "title": "NestJS with SQLite",
+  "postType": "series",
+  "slug": "nestjs-with-sqlite",
+  "status": "published",
+  "content": "Using SQLite with NestJS.",
+  "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"HowTo\" }",
+  "featuredImageUrl": "http://localhost.com/images/sqlite.jpg",
+  "metaOptions": { "metaValue": "{ \"database\": \"sqlite\" }" },
+  "authorId": 9,
+  "tags": [10, 1]
 }

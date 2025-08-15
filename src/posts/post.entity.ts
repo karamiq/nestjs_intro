@@ -1,6 +1,4 @@
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, ManyToOne, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-
-import { CreatePostMetaOptionsDto } from '../meta-options/dtos/create-post-meta-options.dto';
+import { Column, Entity, JoinTable, ManyToMany, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { postStatus } from './enums/postStatus.enum';
 import { postType } from './enums/postType.enum';
 import { MetaOption } from 'src/meta-options/meta-option.entity';
@@ -77,7 +75,11 @@ export class Post {
     // this will automatically load the author when the Post is loaded
     //howver im gonna disable it and ask the user to be loaded
     // from the relations just for the sake of the exmple
-    //eager: true,
+
+    // i made the pagination query generic
+    // and to keep loading the auther as well i have enabled the eager to true
+    // because i want to keep the author along with the post
+    eager: true,
   }
   )
   author: User;

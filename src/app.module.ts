@@ -9,17 +9,22 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import environmentValidation from './config/environment.validation';
 import appConfig from './config/app.config'
 import databaseConfig from './config/database.config';
+import jwtConfig from './config/jwt.config';
 /**
  * Importing Entities
  * */
 import { User } from './users/user.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
+import { PaginationModule } from './common/pagination/pagination.module';
+import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
+import { APP_GUARD } from '@nestjs/core';
 
 
 const ENV = process.env.NODE_ENV;
 @Module({
   imports: [
+
     UsersModule,
     PostsModule,
     AuthModule,
@@ -67,7 +72,7 @@ const ENV = process.env.NODE_ENV;
       // "start:dev": "cross-env NODE_ENV=development nest start --watch",
 
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig, databaseConfig],
+      load: [appConfig, databaseConfig, jwtConfig],
 
       // this isthe validation schema for the environment variables
       // it tell what are the required environment variables and 
@@ -106,8 +111,17 @@ const ENV = process.env.NODE_ENV;
     }),
     TagsModule,
     MetaOptionsModule,
+    PaginationModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AccessTokenGuard,
+    }
+  ],
 })
 export class AppModule { }
+
+
