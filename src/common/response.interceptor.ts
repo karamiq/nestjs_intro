@@ -20,11 +20,18 @@ export class ResponseInterceptor implements NestInterceptor {
         } else if (err?.message) {
           errorMessage = err.message;
         }
-        return throwError(() => ({
-          data: {},
-          errorMessage,
-          errorCode,
-        }));
+
+        // Create a proper HttpException to maintain status codes
+        const httpException = new HttpException(
+          {
+            data: {},
+            errorMessage,
+            errorCode,
+          },
+          errorCode
+        );
+
+        return throwError(() => httpException);
       })
     );
   }

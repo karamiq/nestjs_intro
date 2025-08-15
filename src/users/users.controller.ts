@@ -71,7 +71,6 @@ export class UsersController {
   }
 
   @Post()
-  @SetMetadata('authType', 'none')
   public createUser(@Body() createUserDto: CreateUserDto) {
     return this.createUserProvider.createUser(createUserDto);
   }
@@ -79,7 +78,7 @@ export class UsersController {
   // The global guard will automatically protect this route
 
   // @SetMetadata('authType', 'None')
-  @Auth(AuthType.None)
+  @Auth(AuthType.None,)
   @Post('/create-many')
   public createManyUsers(@Body() createUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUsers(createUsersDto);
