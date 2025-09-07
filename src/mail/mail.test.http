@@ -1,0 +1,19 @@
+### Test Welcome Email
+POST http://localhost:3000/mail/test-welcome
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "firstName": "John"
+}
+
+### Test with your actual email
+POST http://localhost:3000/mail/test-welcome
+Content-Type: application/json
+
+{
+  "email": "your-actual-email@gmail.com",
+  "firstName": "TestUser"
+}
+
+###

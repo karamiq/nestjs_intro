@@ -4,6 +4,7 @@ import { User } from '../user.entity';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { HashingProvider } from 'src/auth/providers/hashing.provider';
+import { MailService } from 'src/mail/providers/mail.service';
 
 /**
  * This provider is responsible for creating a new user
@@ -24,7 +25,9 @@ export class CreateUserProvider {
     @Inject(forwardRef(() => HashingProvider))
     private readonly hashingProvider: HashingProvider,
 
-
+    //!-- since the mail module is global we dont need to
+    //! import it in the users module
+    private readonly mailService: MailService,
   ) { }
 
 
@@ -60,7 +63,6 @@ export class CreateUserProvider {
     /**
      * Handle exceptions if user exists later
      * */
-
     // Try to create a new user
     // - Handle Exceptions Later
     let newUser = this.usersRepository.create({
@@ -70,7 +72,19 @@ export class CreateUserProvider {
     newUser = await this.usersRepository.save(newUser);
     console.log("User created successfully");
 
-    // Create the user
+    try {
+      await this.mailService.sendUserWelcome(newUser)
+      console.log("Welcome email sent successfully");
+    } catch (error) {
+      throw new RequestTimeoutException(
+        'Unable to send welcome email at this time, please try again later',
+        {
+          cause: error,
+          description: 'Email service timeout',
+        }
+      );
+    }
+
     return newUser;
   }
 }

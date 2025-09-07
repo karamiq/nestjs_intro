@@ -10,6 +10,8 @@ import { PatchPostDto } from '../dtos/patch-post.dto';
 import { GetPostsDto } from '../dtos/get-posts.dto';
 import { PaginationProvider } from 'src/common/pagination/providers/pagination.provider';
 import { Paginated } from 'src/common/pagination/interfaces/paginated.interface';
+import { CreatePostProvider } from './create-post.provider';
+import { ActiveUserData } from 'src/auth/interfaces/active-user-data.interface';
 
 @Injectable()
 export class PostService {
@@ -32,29 +34,26 @@ export class PostService {
 
     private readonly tagsService: TagsService,
 
-    private readonly paginationProvider: PaginationProvider
+    private readonly paginationProvider: PaginationProvider,
 
+    private readonly createPostProvider: CreatePostProvider
 
   ) { }
 
-  public async create(@Body() createPostDto: CreatePostDto) {
+  public async create(createPostDto: CreatePostDto, user: ActiveUserData) {
     // Find author from database based on autherId
-    let author = await this.usersService.findOneById(createPostDto.authorId);
+    let author = await this.usersService.findOneById(user.sub);
 
     // getting the tags from the database based on the tag ids
     // this will return an array of tags that match the ids in the createPostDto.tags
-    let tags = await this.tagsService.findMultipleTagsByIds(createPostDto.tags)
+    // let tags = await this.tagsService.findMultipleTagsByIds(createPostDto.tags)
 
     // Create post
-    let post = await this.postsRepository.create({
-      ...createPostDto,
-      author: author,
-      tags: tags
-    });
-
-
-
-
+    // let post = await this.postsRepository.create({
+    //   ...createPostDto,
+    //   author: author,
+    //   tags: tags
+    //  });
     //? -- Since we enabled cascade in the post.entity.ts this isn't needed anymore
     // the metaOptions will be created automatically when the post is created
     // codes to check if the metaOptions exists or not and create then by hand it will be done automatically
@@ -79,7 +78,9 @@ export class PostService {
     // the metaOptions will be created automatically when the post is created
     // thanks to the cascade option in the post.entity.ts file so whe dont need all these
     //// let post = this.postsRepository.create(createPostDto);
-    return await this.postsRepository.save(post);
+    //    return await this.postsRepository.save(post);
+
+    return await this.createPostProvider.createPost(createPostDto, user);
   }
 
   public async findAll(postQuery: GetPostsDto, userId: string): Promise<Paginated<Post>> {

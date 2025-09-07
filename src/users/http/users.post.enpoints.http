@@ -1,21 +1,19 @@
 POST http://localhost:3000/users
 Content-Type: application/json
-
 {
-  "firstName": "kareem",
-  "lastName": "benzime",
-  "email": "test@test.com",
-  "password": "@Password123"
+  "firstName": "#FC#",
+"lastName": "kjlhl",
+  "email": "mjolskffffdfddhsfkjkjlkjjioiuljkujkhjplkjp519@gmail.com",
+  "password": "33#$%@fd42423"
 }
 
 
 POST http://localhost:3000/users/create-many
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3NTQ2MTA5NzQsImV4cCI6MTc1NDYxNDU3NCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.o06_3hVBk6oEmYdqdP153cPcdk7mcyEiYq_bgse7nAA
 {
   "users": [
   
-{
+{ 
   "firstName": "kareem",
   "lastName": "benzime",
   "email": "test@test.com",

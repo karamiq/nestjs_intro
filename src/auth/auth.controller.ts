@@ -1,8 +1,13 @@
-import { AuthService } from './providers/auth.service';
-import { Body, Controller, Post } from '@nestjs/common';
+import { AuthService } from './auth.service';
+import { Body, Controller, HttpCode, HttpStatus, Post } from '@nestjs/common';
 import { SignInDto } from './dtos/signin.dto';
+import { Auth } from './decorator/auth.decorator';
+import { AuthType } from './enums/auth-type.enum';
+import { RefreshTokenDto } from './dtos/refresh-token.dto';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('auth')
+@ApiTags('auth')
 export class AuthController {
   constructor(
     /*
@@ -11,13 +16,17 @@ export class AuthController {
     private readonly authService: AuthService,
   ) { }
 
-  @Post('/sign-in')
-  public async signIn(@Body() signInDto: SignInDto) {
-    return this.authService.signIn(signInDto);
+  @Auth(AuthType.None)
+  @Post('/access-token')
+  @HttpCode(HttpStatus.OK)
+  public async refreshTokens(@Body() refreshTokenDto: RefreshTokenDto) {
+    return this.authService.accessTokens(refreshTokenDto);
   }
 
-  @Post('/sign-up')
-  public async signUp() {
-
+  @Auth(AuthType.None)
+  @Post('/sign-in')
+  @HttpCode(HttpStatus.OK)
+  public async signIn(@Body() signInDto: SignInDto) {
+    return this.authService.signIn(signInDto);
   }
 }

@@ -80,6 +80,8 @@ export class Post {
     // and to keep loading the auther as well i have enabled the eager to true
     // because i want to keep the author along with the post
     eager: true,
+
+    onDelete: 'CASCADE'
   }
   )
   author: User;

@@ -29,12 +29,8 @@ export class PaginationProvider {
     });
 
     const baseUrl = this.request.protocol + '://' + this.request.headers.host;
-    console.log(baseUrl);
 
     const newUrl = new URL(this.request.url, baseUrl);
-
-
-    console.log(newUrl);
 
     const totalItems = await repository.count();
     // the ceil is used to round up the total pages to the nearest integer

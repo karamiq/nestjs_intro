@@ -18,6 +18,11 @@ import { CreateManyUsersDto } from '../dtos/create-many-users.dto';
 import { CreateUserProvider } from './create-user.provider';
 import { CreateUserDto } from '../dtos/create-user.dto';
 import { FindOneUserByEmailProvider } from './find-one-user-by-email.provider';
+import { FindOneByGoogleIdProvider } from './find-one-by-google-id.provider';
+import { CreateGoogleUserProvider } from './create-google-user.provider';
+import GoogleUser from '../interfaces/google-user.interface';
+import { AuthType } from 'src/auth/enums/auth-type.enum';
+import { Auth } from 'src/auth/decorator/auth.decorator';
 /**
  * Controller class for '/users' API endpoint
  */
@@ -48,11 +53,17 @@ export class UsersService {
 
     // Injecting FindOneUserByEmailProvider to find a user by email
     private readonly findOneUserByEmailProvider: FindOneUserByEmailProvider,
+
+    private readonly findOneByGoogleIdProvider: FindOneByGoogleIdProvider,
+
+    private readonly createGoogleUserProvider: CreateGoogleUserProvider,
   ) { }
 
   /**
    * Create a new user
    */
+
+  @Auth(AuthType.None)
   public async createUser(createUserDto: CreateUserDto) {
     return this.createUserProvider.createUser(createUserDto);
   }
@@ -85,18 +96,25 @@ export class UsersService {
    * Find one user by ID
    */
   public async findOneById(id: number) {
-    return this.usersRepository.findOneBy({ id });
+    return await this.usersRepository.findOneBy({ id });
   }
 
   /**
    * Create multiple users in a transaction
    */
   public async createManyUsers(createUsersDto: CreateManyUsersDto) {
-    return this.usersCreateManyProvider.createManyUsers(createUsersDto);
+    return await this.usersCreateManyProvider.createManyUsers(createUsersDto);
   }
 
 
   public async findOneByEmail(email: string) {
-    return this.findOneUserByEmailProvider.findOneByEmail(email);
+    return await this.findOneUserByEmailProvider.findOneByEmail(email);
+  }
+
+  public async findOneByGoogleId(googleId: string) {
+    return await this.findOneByGoogleIdProvider.findOneByGoogleId(googleId);
+  }
+  public async createGoogleUser(googleUser: GoogleUser) {
+    return await this.createGoogleUserProvider.createGoogleUser(googleUser);
   }
 }

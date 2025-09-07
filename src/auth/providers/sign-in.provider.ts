@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 import jwtConfig from 'src/config/jwt.config';
 import { ConfigType } from '@nestjs/config';
 import { In } from 'typeorm';
+import { ActiveUserData } from '../interfaces/active-user-data.interface';
+import { GenerateTokensProvider } from './generate-tokens.provider';
 @Injectable()
 export class SignInProvider {
 
@@ -25,6 +27,8 @@ export class SignInProvider {
      */
     @Inject(jwtConfig.KEY)
     private readonly jwtConfiguration: ConfigType<typeof jwtConfig>,
+
+    private readonly generateTokensProvider: GenerateTokensProvider,
   ) { }
 
   /**
@@ -43,24 +47,28 @@ export class SignInProvider {
     }
 
     if (!isEqual) {
-      throw new UnauthorizedException('Invalid credentials');
+      throw new UnauthorizedException('Incorrect password');
     }
-    const accessToken = await this.jwtService.signAsync({
-      sub: user.id,
-      email: user.email,
-    }, {
-      audience: this.jwtConfiguration.audience,
-      issuer: this.jwtConfiguration.issuer,
-      secret: this.jwtConfiguration.secret,
-      expiresIn: this.jwtConfiguration.accessTokenTtl,
-    })
-    return {
-      user: {
-        id: user.id,
-        email: user.email,
-      },
-      accessToken,
-    };
+    return this.generateTokensProvider.generateTokens(user);
+
+    // generation of token before creating the generateTokensProvider
+
+    // const accessToken = await this.jwtService.signAsync({
+    //   sub: user.id,
+    //   email: user.email,
+    // } as ActiveUserData, {
+    //   audience: this.jwtConfiguration.audience,
+    //   issuer: this.jwtConfiguration.issuer,
+    //   secret: this.jwtConfiguration.secret,
+    //   expiresIn: this.jwtConfiguration.accessTokenTtl,
+    // })
+    // return {
+    //   user: {
+    //     id: user.id,
+    //     email: user.email,
+    //   },
+    //   accessToken,
+    // };
 
 
   }

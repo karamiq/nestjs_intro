@@ -1,20 +1,15 @@
 import {
   Controller,
-  Delete,
   Get,
   Param,
   Patch,
   Post,
-  Put,
   Query,
   Body,
-  Headers,
-  Ip,
   ParseIntPipe,
   DefaultValuePipe,
-  ValidationPipe,
-  UseGuards,
-  SetMetadata,
+  UseInterceptors,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { CreateUserDto } from './dtos/create-user.dto';
 import { GetUsersParamDto } from './dtos/get-users-param.dto';
@@ -71,6 +66,8 @@ export class UsersController {
   }
 
   @Post()
+  @Auth(AuthType.None)
+  @UseInterceptors(ClassSerializerInterceptor)
   public createUser(@Body() createUserDto: CreateUserDto) {
     return this.createUserProvider.createUser(createUserDto);
   }
@@ -78,7 +75,6 @@ export class UsersController {
   // The global guard will automatically protect this route
 
   // @SetMetadata('authType', 'None')
-  @Auth(AuthType.None,)
   @Post('/create-many')
   public createManyUsers(@Body() createUsersDto: CreateManyUsersDto) {
     return this.usersService.createManyUsers(createUsersDto);

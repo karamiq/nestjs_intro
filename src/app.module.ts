@@ -10,25 +10,28 @@ import environmentValidation from './config/environment.validation';
 import appConfig from './config/app.config'
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
+import googleCloudConfig from './config/google-cloud';
 /**
  * Importing Entities
  * */
-import { User } from './users/user.entity';
 import { TagsModule } from './tags/tags.module';
 import { MetaOptionsModule } from './meta-options/meta-options.module';
 import { PaginationModule } from './common/pagination/pagination.module';
 import { AccessTokenGuard } from './auth/guards/access-token/access-token.guard';
-import { APP_GUARD } from '@nestjs/core';
+import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthenticationGuard } from './auth/gaurds/authentication/authentication.guard';
-
+import { DataResponseNoSpecInterceptor } from './common/interceptors/data-response/data-response.interceptor';
+import { StorageModule } from './common/storage/storage.module';
+import { MailModule } from './mail/mail.module';
+import mailConfig from './config/mail.config';
 
 const ENV = process.env.NODE_ENV;
 @Module({
   imports: [
-
     UsersModule,
     PostsModule,
     AuthModule,
+    StorageModule,
     ConfigModule.forRoot({
       // Makes the configuration available globally
       // otherwise you would have to import ConfigModule in every module
@@ -73,7 +76,7 @@ const ENV = process.env.NODE_ENV;
       // "start:dev": "cross-env NODE_ENV=development nest start --watch",
 
       envFilePath: !ENV ? '.env' : `.env.${ENV}`,
-      load: [appConfig, databaseConfig, jwtConfig],
+      load: [appConfig, databaseConfig, jwtConfig, googleCloudConfig, mailConfig],
 
       // this isthe validation schema for the environment variables
       // it tell what are the required environment variables and 
@@ -86,6 +89,7 @@ const ENV = process.env.NODE_ENV;
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
+
       useFactory: (config: ConfigService) => ({
         type: 'postgres',
         // entities: [User],
@@ -94,7 +98,6 @@ const ENV = process.env.NODE_ENV;
         // These options are for development only
         // and should not be used in production
         synchronize: config.get<boolean>('database.synchronize'),
-
         // ? instead of using the environment variables directly
         // * you can use the ConfigService to get the values
         // port: parseInt(process.env.DATABASE_PORT, 10),
@@ -102,7 +105,6 @@ const ENV = process.env.NODE_ENV;
         // password: process.env.DATABASE_PASSWORD,
         // host: process.env.DATABASE_HOST,
         // database: process.env.DATABASE_NAME,
-
         port: config.get<number>('database.port'),
         username: config.get<string>('database.user'),
         password: config.get<string>('database.password'),
@@ -113,6 +115,7 @@ const ENV = process.env.NODE_ENV;
     TagsModule,
     MetaOptionsModule,
     PaginationModule,
+    MailModule,
   ],
   controllers: [AppController],
   providers: [
@@ -122,6 +125,11 @@ const ENV = process.env.NODE_ENV;
       useClass: AuthenticationGuard,
     },
     AccessTokenGuard,
+
+    {
+      provide: APP_INTERCEPTOR,
+      useClass: DataResponseNoSpecInterceptor
+    }
   ],
 })
 export class AppModule { }

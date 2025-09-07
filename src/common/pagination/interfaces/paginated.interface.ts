@@ -13,6 +13,4 @@ export interface Paginated<T> {
     next: string;
     previous: string;
   };
-
-
 }

@@ -3,17 +3,16 @@
 ###
 POST http://localhost:3000/posts
 Content-Type: application/json
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJ0b2tlblR5cGUiOiJhY2Nlc3NfdG9rZW4iLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3NTU1ODc0MjIsImV4cCI6MTc1NTU5MTAyMiwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.YOZPP3lmT0zZbZ35NTlHT6TPuCzaSRkEOMYQvR9DmYM
 {
   "title": "Understanding JavaScript Closures",
   "postType": "post",
-  "slug": "understanding-javascript-closures",
+  "slug": "closures",
   "status": "published",
   "content": "A deep dive into closures in JavaScript.",
   "schema": "{ \"@context\": \"https://schema.org\", \"@type\": \"Article\" }",
   "featuredImageUrl": "http://localhost.com/images/js-closures.jpg",
   "metaOptions": { "metaValue": "{ \"difficulty\": \"intermediate\" }" },
-  "authorId": 1,
   "tags": [1, 2]
 }
 

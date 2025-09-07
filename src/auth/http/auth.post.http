@@ -6,3 +6,24 @@ Content-Type: application/json
  "email": "test@test.com",
   "password": "@Password123"
 }
+
+// refresh tokens
+POST http://localhost:3000/auth/access-token
+Content-Type: application/json
+
+{
+    "refreshToken":  "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJpYXQiOjE3NTU4NjgxNDcsImV4cCI6MTc1NTk1NDU0NywiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.1DIjSn1EpGslwVqSORPNoE-oEhrAjAMPDM4Vm0ZS4_NXp5Uet_YTlACSebeFPZoWW3NtSdzy6be6WCAGIoTW6w"
+}
+
+
+
+///////////
+
+
+
+// algorithms: ['HS512'],
+
+//   // Check if the error is related to algorithm mismatch
+//             if (error.message?.includes('algorithm')) {
+//                 throw new UnauthorizedException('Invalid token type. Only refresh tokens are allowed.');
+//             }

@@ -1,8 +1,10 @@
 import { Body, Controller, Delete, Get, ParseIntPipe, Post, Query } from '@nestjs/common';
 import { CreateTagDto } from './dtos/create-tag.dto';
 import { TagsService } from './providers/tags.service';
+import { ApiTags } from '@nestjs/swagger';
 
 @Controller('tags')
+@ApiTags('tags')
 export class TagsController {
   constructor(
     /*

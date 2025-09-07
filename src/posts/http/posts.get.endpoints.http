@@ -3,7 +3,7 @@
   userId = 1234;
   startDate = new Date('2025-01-01').toISOString();
   endDate = new Date('2025-01-02').toISOString();
-  page = 2;
+  page = 4;
   limit = 10;
 }}
 GET  http://localhost:3000/posts/{{userId}}
@@ -11,3 +11,5 @@ GET  http://localhost:3000/posts/{{userId}}
 &endDate={{endDate}}
 &page={{page}}
 &limit={{limit}} 
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE1LCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJpYXQiOjE3NTUyODM2MTQsImV4cCI6MTc1NTI4NzIxNCwiYXVkIjoibG9jYWxob3N0OjMwMDAiLCJpc3MiOiJsb2NhbGhvc3Q6MzAwMCJ9.XYzWM_2AYiTAa71OrmPiisrzKXUIm2m-TenCld5pNyg

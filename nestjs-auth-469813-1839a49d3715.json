@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "nestjs-auth-469813",
+  "private_key_id": "1839a49d371504753aa78bf8fe7879dbfe2f6ca3",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC1J+Abb4poDqMt\nG5u7vk2wAjrHtJ0z43Kx42T8UXMJYq/fSrcRrj3AjzrwIO7aZEW5lBAyhARCYltQ\nN6uou8djxaVK2XbZNqnCSRL0SLqo0SBd7xo1mVFRHZomxvkF1q/Eo/jYdpi05Sgu\nOQ/xe2MgHs45h7wlo7AzQSVM9kES2NQZ4GKmQh9FBbyero08R44f15cJTSJpyrff\nb2xKAaW5/D7pLMEnsHINw8v1yZoOAIOzbtfBK24Xf/iSf/+rXFlG9dFFelXUgP30\nJINczVQN2pekGz1nVCGJQEUaRPKVFlPNni43HqYHU/ygneydMGYfYLDfqXlo3H4+\nUNb7ig7HAgMBAAECggEAD0CyP90eXDCPUKb4b9BQHjex10q/ybSm3Y9120DIXMvw\nXu6dh2GSVXo5zioXsk+rBzsOOhKfgS9i3NgzHdvhp+bmSe0RcqyFkpQwglz1Sm2B\nOid9n3GvRRMm/YjXQsSWvAnKU/94UBLTVUD8tKpc6EFvv6xMDSdBGK+tglNhm0J9\n2Up8u6Bgq2nUSIKwDw0NTpB83soYEe061HG60sxQ6MKQFzs5VJajmpFSl7B3rj1X\numCVbpaJ2HOX02jNqtkyxc9pL0HgnBua4CRllN+m0USL8oWnJgFyWKyd2E07XoFK\nA9wiIsxBvQ6oBN+j6GAILYk+MOSjhcp9fR1gKBqiQQKBgQD0zKyjpOQYyOD8bqlZ\nVXPW0EAGccLBGWLUVnd4BkaZq7KodSV2xbjES6nIVDjODo1PhSpjNTunPt0kQoMw\nTeaO2KdRdJxeIjQKriJcM7uxVSZ3qHj8vGw9TgICE6m1Qk0L9KPAQBDXeIqoZ/yW\nne9DPNkGXrFI5mOS7I9opuRKFwKBgQC9cb6lww427fhpmfA013cwyYYlpEzqRGA+\nwpBAgt2rmZXpgeK00X/J6Nf9FsysgpqMEDCbjkH3U/nxljLDIiEAM2DTM1ubjzeQ\nR/2ehMc8DmAwW1DkuzVyATTdwJhJHpv58h3f3VVp6llgrS/SJUzNQyX5RhqYIhDY\naLoKs4g+0QKBgQDtMNOly8Lm8NxuOpsD3/RZk3Y1yEw35W0I6K7hMNN/WgnFh5xB\nNNsN93IOlOxlW1w4TIMBlTazmgmTdI7AYvqeNfYIysAnxWQ/ZPIN/GJENIkNL8Pq\nvnbx/3+am4q4AgG9L9DqGik3Xaib/AWVunl14KM3tNB6HiEk3uklMW/JCQKBgGP8\nDW/1M6JgFJS/j1yEP777DZb+US3vapCVJYc2yoHP7KQyThG65GQPRTepedquj5zO\nyqi++yfrJWaRLDd64sn1U+wEFhxTCTNYG443a+PRfojnGRmviLSj2GAVTwqAYjgX\nxhap/XOKISP6I9wYnaFUCE245z5V9GgTVeVh/c2RAoGBAJto6ZfIlSvnyl6UcaP2\nmIsMEeiVewYVAyPwrn1xBTjldb4OitOQerB8QASyBc7DRwsmLD3r1k9OPvVDzfEM\n2d5iC6wBR0nS5/5y4bXu1AC10ymq0k69kLkdA18Ka7B4DPLr4FadfktsO/rxZLr8\njiRzl71WRu565usQLDYKqIgM\n-----END PRIVATE KEY-----\n",
+  "client_email": "nest-uploading@nestjs-auth-469813.iam.gserviceaccount.com",
+  "client_id": "101956115465755497100",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/nest-uploading%40nestjs-auth-469813.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}

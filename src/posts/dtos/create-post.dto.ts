@@ -129,14 +129,25 @@ export class CreatePostDto {
   @ValidateNested({ each: true })
   @Type(() => CreatePostMetaOptionsDto)
   metaOptions?: CreatePostMetaOptionsDto | null;
-  
-   @ApiProperty({
-    type: 'integer',
-    description: 'The ID of the author who created the post',
-    example: 1,
-   }) 
-   
-  @IsNotEmpty()
-  @IsInt()
-  authorId: number;
+
+
+
+  // !--> since we are using the ActiveUser decorator
+
+  // ? we can get the authorId from the jwt token that is sent in the request header
+  // ? so we dont need to pass the authorId in the create post dto
+  // ? we can get the authorId from the ActiveUser decorator
+  // ? so we can remove the authorId from the create post dto
+  // ? check what the access token guard and the ActiveUser decorator does for more details
+  // @ApiProperty({
+  //   type: 'integer',
+  //   description: 'The ID of the author who created the post',
+  //   example: 1,
+  // })
+
+  // @IsNotEmpty()
+  // @IsInt()
+  // authorId: number;
+
+
 }
